@@ -11,7 +11,9 @@ const VehicleDetails = () => {
 
   useEffect(() => {
     const fetchVehicle = async () => {
-      const docRef = doc(db, "vehicles", id);
+      const decodedId = decodeURIComponent(id);
+const docRef = doc(db, "vehicles", decodedId);
+
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setVehicle(docSnap.data());

@@ -8,26 +8,40 @@ import VehicleDetails from "./pages/VehicleDetails";
 import Checkout from "./pages/Checkout";
 import MyBookings from "./pages/MyBookings";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"
 
 function App() {
   return (
     <>
+      {/* ✅ Always show Navbar at the top */}
       <Navbar />
+
+      {/* ✅ App Routing */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/vehicle/:id" element={<VehicleDetails />} />
         
-        <Route path="/checkout/:id" element={
-          <ProtectedRoute>
-            <Checkout />
-          </ProtectedRoute>
-        } />
-        <Route path="/my-bookings" element={
-          <ProtectedRoute>
-            <MyBookings />
-          </ProtectedRoute>
-        } />
+        {/* ✅ Vehicle detail page */}
+        <Route path="/vehicle/:id" element={<VehicleDetails />} />
+
+        {/* ✅ Protected: Only for logged-in users */}
+        <Route 
+          path="/checkout/:id" 
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/my-bookings" 
+          element={
+            <ProtectedRoute>
+              <MyBookings />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* ✅ Auth pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
@@ -36,3 +50,4 @@ function App() {
 }
 
 export default App;
+
